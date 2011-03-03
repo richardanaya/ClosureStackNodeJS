@@ -21,7 +21,7 @@ var app = [
 ];
 
 var server = nerve.create(app, {session_duration: 10000, document_root: './static'})
-server.listen(8000);
+server.listen(9999);
 
 //WebSocket Setup, delete below this line if you don't use
 var io = require('socket.io');
