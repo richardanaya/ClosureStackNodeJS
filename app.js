@@ -1,5 +1,5 @@
 var nun = require('nun');
-var nerve = require("./lib/nerve/nerve");
+var express = require('express');
  
 var render = function(res,template,data) {
   if( data == undefined ) {
@@ -9,25 +9,27 @@ var render = function(res,template,data) {
     if (err) throw err;
     var buffer = '';
     output.on('data', function(data){ buffer += data; })
-          .on('end', function(){ res.respond(buffer); });
+          .on('end', function(){ res.send(buffer); });
   });
 }
 
-var get = nerve.get;
-var app = [
-  [get(/^\/index$/), function (req, res, name) {
-    render(res,'index.html');
-  }]
-];
+var app = express.createServer();
 
-var server = nerve.create(app, {session_duration: 10000, document_root: './static'})
-server.listen(9999);
+app.configure(function(){
+	app.use(express.static(__dirname + '/static'));
+});
+
+app.get(/^.*$/, function(req, res){
+    render(res,'index.html');
+});
+
+app.listen(9999);
 
 //WebSocket Setup, delete below this line if you don't use
 var io = require('socket.io');
 var clients = [];
 
-var socket = io.listen(server); 
+var socket = io.listen(app); 
 socket.on('connection', function(client){ 
   clients.push(client);
   client.on('message', function(data){ 
