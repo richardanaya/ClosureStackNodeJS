@@ -1,7 +1,7 @@
 goog.provide('website');
 goog.require('website.templates');
-goog.require('util')
 goog.require('goog.dom');
+
 ###*
 A class representation of A
 @constructor
@@ -16,13 +16,17 @@ A class representation of B
 @class
 ###
 B = () ->
-	super()
+	A.call()	
 	website.sayHello('B constructor called')
-util.inherits(B,A)
+goog.inherits(B,A)
 
 website.sayHello = (message) ->
   data = {greeting: message, year: new Date().getFullYear()};
   html = website.templates.welcome(data);
   goog.dom.getElement('hello').innerHTML += html;
 
-goog.exportSymbol('website.sayHello',website.sayHello);
+
+website.start = () ->
+  new B()
+
+goog.exportSymbol('website.start',website.start)
