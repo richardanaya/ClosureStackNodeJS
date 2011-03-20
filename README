@@ -1,0 +1,13 @@
+This is my template project for creating NodeJS projects that use coffee, express, and google closure tools.
+
+Google closure is a great tool that compresses your javascript and all needed dependencies from the Closure library and your own library into a single file.
+
+There are three levels of compilation, that correspond to 3 commands you can execute:
+
+compile.sh - compiles your files into a single javascript file in an uncompressed fashion.  This is most useful for debug purposes.
+simple_compile.sh - compiles your file into a single javascript file using compression and simple optimizations in local scopes
+advanced_compiled.sh - compiles your file into a single javascript file using compression and optimizations which RELY ON YOU USING JSDOC IN YOUR CODE
+
+When you have performed compilation, you can run your NodeJS application by:
+
+run_server.sh
