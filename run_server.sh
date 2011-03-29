@@ -1,1 +1,1 @@
-node website/server.js
+node website/server/server.js
