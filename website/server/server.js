@@ -1,22 +1,32 @@
 var nun = require('nun');
 var express = require('express');
- 
-var render = function(res,template,data) {
-  if( data == undefined ) {
-    data = {};
-  }
-  nun.render(__dirname+"/templates/"+template, data, {}, function(err, output){
-    if (err) throw err;
-    var buffer = '';
-    output.on('data', function(data){ buffer += data; })
-          .on('end', function(){ res.send(buffer); });
-  });
-}
+var fs = require('fs');
+var ejs = require('ejs');
+
+var render = function(res, template, data) {
+    return loadTemplate((function(buffer) {
+	return res.send(buffer);
+    }), template, data);
+};
+
+var loadTemplate = function(action, template, data) {
+    if (!(data != null)) {
+	data = {};
+    }
+    return fs.readFile(__dirname + "/../templates/" + template, 'ascii', (function(err, text) {
+	if (err) {
+	    throw err;
+	}
+	return action(ejs.render(text, {
+	    'locals': data
+	}));
+    }));
+};
 
 var app = express.createServer();
 
 app.configure(function(){
-	app.use(express.static(__dirname + '/static'));
+	app.use(express.static(__dirname + '/../static'));
 });
 
 app.get(/^.*$/, function(req, res){
