@@ -1,4 +1,5 @@
 express = require('express')
+model = require('./model')
 util = require('./util')
 
 app = express.createServer()
