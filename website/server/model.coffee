@@ -7,7 +7,8 @@ Person = new mongoose.Schema({
 mongoose.model('Person',Person)
 PersonModel = mongoose.model('Person')
 
-db = () ->
-    mongoose.connect('mongodb://user:password@abc.com:9999/Test')
+connect = (url) ->
+    mongoose.connect(url)
 
+exports.connect = connect
 exports.PersonModel = PersonModel

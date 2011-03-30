@@ -2,6 +2,8 @@ express = require('express')
 model = require('./model')
 util = require('./util')
 
+model.connect('mongodb://user:password@abc.com:9999/Database')
+
 app = express.createServer()
 
 app.configure( () ->
