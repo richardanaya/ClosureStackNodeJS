@@ -11122,40 +11122,11 @@ website.templates.welcome = function(opt_data, opt_sb) {
   output.append('<h1 id="greeting">', soy.$$escapeHtml(opt_data.greeting), '</h1>The year is ', soy.$$escapeHtml(opt_data.year), '.');
   if (!opt_sb) return output.toString();
 };
-(function() {
-  var A, B;
-  goog.provide('website');
-  goog.require('website.templates');
-  goog.require('goog.dom');
-  /**
-  A class representation of A
-  @constructor
-  @class
-  */
-  A = function() {
-    return website.sayHello('A constructor called');
-  };
-  /**
-  A class representation of B
-  @constructor
-  @class
-  */
-  B = function() {
-    A.call();
-    return website.sayHello('B constructor called');
-  };
-  goog.inherits(B, A);
-  website.sayHello = function(message) {
-    var data, html;
-    data = {
-      greeting: message,
-      year: new Date().getFullYear()
-    };
-    html = website.templates.welcome(data);
-    return goog.dom.getElement('hello').innerHTML += html;
-  };
-  website.start = function() {
-    return new B();
-  };
-  goog.exportSymbol('website.start', website.start);
-}).call(this);
+goog.provide('website');
+goog.require('website.templates');
+goog.require('goog.dom');
+
+website.start = function() {
+}
+
+goog.exportSymbol('website.start',website.start)
