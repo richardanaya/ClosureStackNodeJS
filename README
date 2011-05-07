@@ -1,4 +1,4 @@
-This is my template project for creating NodeJS projects that use coffee, express, and google closure tools.
+This is my template project for creating NodeJS projects that use express and google closure tools.
 
 Google closure is a great tool that compresses your javascript and all needed dependencies from the Closure library and your own library into a single file.
 
