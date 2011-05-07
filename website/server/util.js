@@ -1,5 +1,3 @@
-var fs = require('fs');
-var ejs = require('ejs');
 var template = require('./djangode/template/template');
 var loader = require('./djangode/template/loader');
 
