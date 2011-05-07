@@ -16,7 +16,6 @@ var loadTemplate = function(action, template, data) {
     loader.load_and_render(template, data, function (error, result) {
 	if (error) {
 	    action(error);
-	    //dj.default_show_500(req, res, error);
 	} 
 	else {
 	    action(result);
