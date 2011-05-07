@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+    <head>
+	<title>{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="/css/site.css" />
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script src="/js/website-compiled.js"></script>
+    </head>
+    <body onload="website.start();">
+	{% block content %}{% endblock %}
+    </body>
+</html>

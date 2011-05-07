@@ -1,5 +1,9 @@
 var fs = require('fs');
 var ejs = require('ejs');
+var template = require('./djangode/template/template');
+var loader = require('./djangode/template/loader');
+
+loader.set_path(__dirname+'/../templates');
 
 var render = function(res, template, data) {
     templateLoaded = function(buffer) { return res.send(buffer); };
@@ -8,11 +12,16 @@ var render = function(res, template, data) {
 
 var loadTemplate = function(action, template, data) {
     if( data == undefined ) { data = {}; }
-    var fileRead = function(err,text) {
-        if( err == undefined ) { throw err; }
-	return action(ejs.render(text, {'locals': data }));
-    }
-    return fs.readFile(__dirname + "/../templates/" + template, 'ascii', fileRead);
+
+    loader.load_and_render(template, data, function (error, result) {
+	if (error) {
+	    action(error);
+	    //dj.default_show_500(req, res, error);
+	} 
+	else {
+	    action(result);
+	}
+    });
 }
 
 exports.render = render;
