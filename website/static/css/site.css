@@ -1,0 +1,23 @@
+body {
+    color: white;
+    background-color: #333;
+    font-family: 'Droid Sans', arial, serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    color: white;   
+}
+
+h3 {
+  font-size: 18px;
+}
+
+.works {
+    color: green;
+}
+
+.hidden {
+    visibility: hidden;
+    width:0px;
+    height:0px;
+}
